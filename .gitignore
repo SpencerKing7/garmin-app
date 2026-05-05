@@ -9,3 +9,4 @@ external-mir/
 .claude/
 CLAUDE.md
 developer_key
+source/config.mc
