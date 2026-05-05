@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
+    <iq:application
+        entry="App"
+        id="a3d4e5f6-1234-5678-abcd-ef0123456789"
+        launcherIcon="@Drawables.LauncherIcon"
+        minSdkVersion="3.0.0"
+        name="@Strings.AppName"
+        type="watch-app"
+        version="1.0.0">
+
+        <iq:products>
+            <iq:product id="fr970"/>
+        </iq:products>
+
+        <iq:permissions>
+            <iq:uses-permission id="Communications"/>
+        </iq:permissions>
+
+        <iq:languages>
+            <iq:language>eng</iq:language>
+        </iq:languages>
+
+    </iq:application>
+</iq:manifest>
