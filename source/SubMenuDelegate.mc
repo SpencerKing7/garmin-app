@@ -12,11 +12,11 @@ class SubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     private function resolveKey(actionId as Symbol) as Symbol or Null {
+        if (_groupId == :sleep)      { return actionId == :start ? :sleepStart : :sleepStop;    }
         if (_groupId == :lamp1)      { return actionId == :on ? :lamp1On      : :lamp1Off;      }
         if (_groupId == :lamp2)      { return actionId == :on ? :lamp2On      : :lamp2Off;      }
         if (_groupId == :wall)       { return actionId == :on ? :wallOn       : :wallOff;       }
         if (_groupId == :wallflower) { return actionId == :on ? :wallflowerOn : :wallflowerOff; }
-        if (_groupId == :sleep)      { return actionId == :start ? :sleepStart : :sleepStop;    }
         return null;
     }
 
@@ -35,7 +35,7 @@ class SubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onResponse(responseCode as Number, data as Dictionary or String or Null) as Void {
-        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 500});
+        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 750});
     }
 
     function onBack() as Void {

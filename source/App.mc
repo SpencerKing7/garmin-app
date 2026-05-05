@@ -10,15 +10,12 @@ class App extends Application.AppBase {
     function getInitialView() as [Views] or [Views, InputDelegates] {
         var menu = new WatchUi.Menu2({:title => "Control Home"});
 
-        // Groups — push submenu on select
+        menu.addItem(new WatchUi.MenuItem("Sleep",       null, :sleep,      {}));
+        menu.addItem(new WatchUi.MenuItem("Living Room", null, :livingRoom, {}));
         menu.addItem(new WatchUi.MenuItem("Lamp 1",      null, :lamp1,      {}));
         menu.addItem(new WatchUi.MenuItem("Lamp 2",      null, :lamp2,      {}));
         menu.addItem(new WatchUi.MenuItem("Wall",        null, :wall,       {}));
         menu.addItem(new WatchUi.MenuItem("Wallflower",  null, :wallflower, {}));
-        menu.addItem(new WatchUi.MenuItem("Sleep",       null, :sleep,      {}));
-
-        // Direct actions — fire URL immediately
-        menu.addItem(new WatchUi.MenuItem("Living Room", null, :livingRoom, {}));
         menu.addItem(new WatchUi.MenuItem("Home Off",    null, :homeOff,    {}));
 
         return [menu, new MenuDelegate()];

@@ -4,7 +4,7 @@ import Toybox.Lang;
 
 class MenuDelegate extends WatchUi.Menu2InputDelegate {
 
-    private var _groups as Array<Symbol> = [:lamp1, :lamp2, :wall, :wallflower, :sleep];
+    private var _groups as Array<Symbol> = [:sleep, :lamp1, :lamp2, :wall, :wallflower];
 
     function initialize() {
         Menu2InputDelegate.initialize();
@@ -43,7 +43,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onResponse(responseCode as Number, data as Dictionary or String or Null) as Void {
-        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 1000});
+        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 750});
     }
 
     function onBack() as Void {
