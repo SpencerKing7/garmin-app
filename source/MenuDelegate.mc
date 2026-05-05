@@ -7,10 +7,18 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     private var _menu as WatchUi.Menu2;
 
     private var _indices as Dictionary<Symbol, Number> = {
-        :action3 => 0,
-        :action4 => 1,
-        :action2 => 2,
-        :action1 => 3
+        :sleepStart    => 0,
+        :sleepStop     => 1,
+        :livingRoom    => 2,
+        :homeOff       => 3,
+        :lamp1On       => 4,
+        :lamp1Off      => 5,
+        :lamp2On       => 6,
+        :lamp2Off      => 7,
+        :wallOn        => 8,
+        :wallOff       => 9,
+        :wallflowerOn  => 10,
+        :wallflowerOff => 11
     };
 
     function initialize(menu as WatchUi.Menu2) {
@@ -34,7 +42,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
             null,
             {
                 :method => Communications.HTTP_REQUEST_METHOD_GET,
-                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
+                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
             },
             method(:onResponse)
         );
