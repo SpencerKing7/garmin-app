@@ -4,58 +4,46 @@ import Toybox.Lang;
 
 class MenuDelegate extends WatchUi.Menu2InputDelegate {
 
-    private var _menu as WatchUi.Menu2;
+    private var _groups as Array<Symbol> = [:lamp1, :lamp2, :wall, :wallflower, :sleep];
 
-    private var _indices as Dictionary<Symbol, Number> = {
-        :sleepStart    => 0,
-        :sleepStop     => 1,
-        :livingRoom    => 2,
-        :homeOff       => 3,
-        :lamp1On       => 4,
-        :lamp1Off      => 5,
-        :lamp2On       => 6,
-        :lamp2Off      => 7,
-        :wallOn        => 8,
-        :wallOff       => 9,
-        :wallflowerOn  => 10,
-        :wallflowerOff => 11
-    };
-
-    function initialize(menu as WatchUi.Menu2) {
+    function initialize() {
         Menu2InputDelegate.initialize();
-        _menu = menu;
     }
 
     function onSelect(item as MenuItem) as Void {
         var id = item.getId() as Symbol;
-        var idx = _indices[id];
-        if (idx != null) {
-            _menu.setFocus(idx);
-            WatchUi.requestUpdate();
+
+        // Group item — build and push submenu
+        var i = 0;
+        while (i < _groups.size()) {
+            if (_groups[i] == id) {
+                var submenu = new WatchUi.Menu2({:title => item.getLabel()});
+                if (id == :sleep) {
+                    submenu.addItem(new WatchUi.MenuItem("Start", null, :start, {}));
+                    submenu.addItem(new WatchUi.MenuItem("Stop",  null, :stop,  {}));
+                } else {
+                    submenu.addItem(new WatchUi.MenuItem("On",  null, :on,  {}));
+                    submenu.addItem(new WatchUi.MenuItem("Off", null, :off, {}));
+                }
+                WatchUi.pushView(submenu, new SubMenuDelegate(id), WatchUi.SLIDE_LEFT);
+                return;
+            }
+            i++;
         }
+
+        // Direct-action item
         var url = Config.ENDPOINT_URLS[id];
-        if (url == null) {
-            return;
-        }
+        if (url == null) { return; }
         Communications.makeWebRequest(
-            url,
-            null,
-            {
-                :method => Communications.HTTP_REQUEST_METHOD_GET,
-                :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON
-            },
+            url, null,
+            {:method => Communications.HTTP_REQUEST_METHOD_GET,
+             :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_JSON},
             method(:onResponse)
         );
     }
 
     function onResponse(responseCode as Number, data as Dictionary or String or Null) as Void {
-        var msg;
-        if (responseCode == 200) {
-            msg = "Success!";
-        } else {
-            msg = "Error: " + responseCode;
-        }
-        WatchUi.showToast(msg, null);
+        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 1000});
     }
 
     function onBack() as Void {
