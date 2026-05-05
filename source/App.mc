@@ -9,10 +9,11 @@ class App extends Application.AppBase {
 
     function getInitialView() as [Views] or [Views, InputDelegates] {
         var menu = new WatchUi.Menu2({:title => "Actions"});
-        menu.addItem(new WatchUi.MenuItem("Action 1", null, :action1, {}));
-        menu.addItem(new WatchUi.MenuItem("Action 2", null, :action2, {}));
-        menu.addItem(new WatchUi.MenuItem("Action 3", null, :action3, {}));
-        return [menu, new MenuDelegate()];
+        menu.addItem(new WatchUi.MenuItem("Sleep", null, :action3, {}));
+        menu.addItem(new WatchUi.MenuItem("Sleep Pause", null, :action4, {}));
+        menu.addItem(new WatchUi.MenuItem("Living Room", null, :action2, {}));
+        menu.addItem(new WatchUi.MenuItem("Home - Off", null, :action1, {}));
+        return [menu, new MenuDelegate(menu)];
     }
 
 }

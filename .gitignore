@@ -1,0 +1,11 @@
+bin/
+gen/
+mir/
+internal-mir/
+external-mir/
+*.prg
+*.prg.debug.xml
+.vscode/
+.claude/
+CLAUDE.md
+developer_key
