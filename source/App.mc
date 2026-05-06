@@ -1,10 +1,26 @@
 import Toybox.Application;
 import Toybox.WatchUi;
+import Toybox.Timer;
+import Toybox.System;
+
+// Close the app after this many milliseconds of inactivity
+const INACTIVITY_TIMEOUT_MS = 15000;
 
 class App extends Application.AppBase {
 
+    private var _timer as Timer.Timer = new Timer.Timer();
+
     function initialize() {
         AppBase.initialize();
+    }
+
+    function resetTimer() as Void {
+        _timer.stop();
+        _timer.start(method(:onTimeout), INACTIVITY_TIMEOUT_MS, false);
+    }
+
+    function onTimeout() as Void {
+        System.exit();
     }
 
     function getInitialView() as [Views] or [Views, InputDelegates] {
@@ -18,6 +34,7 @@ class App extends Application.AppBase {
         menu.addItem(new WatchUi.MenuItem("Wallflower",  null, :wallflower, {}));
         menu.addItem(new WatchUi.MenuItem("Home Off",    null, :homeOff,    {}));
 
+        resetTimer();
         return [menu, new MenuDelegate()];
     }
 

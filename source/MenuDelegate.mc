@@ -11,6 +11,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onSelect(item as MenuItem) as Void {
+        getApp().resetTimer();
         var id = item.getId() as Symbol;
 
         // Group item — build and push submenu
@@ -47,6 +48,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onBack() as Void {
+        getApp().resetTimer();
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 

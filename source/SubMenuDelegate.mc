@@ -21,6 +21,7 @@ class SubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onSelect(item as MenuItem) as Void {
+        getApp().resetTimer();
         var actionId = item.getId() as Symbol;
         var urlKey = resolveKey(actionId);
         if (urlKey == null) { return; }
@@ -39,6 +40,7 @@ class SubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onBack() as Void {
+        getApp().resetTimer();
         WatchUi.popView(WatchUi.SLIDE_RIGHT);
     }
 
