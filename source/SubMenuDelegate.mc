@@ -36,7 +36,7 @@ class SubMenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onResponse(responseCode as Number, data as Dictionary or String or Null) as Void {
-        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 750});
+        WatchUi.showToast(responseCode == 200 ? "Success!" : "Error: " + responseCode, {:duration => 2000});
     }
 
     function onBack() as Void {
