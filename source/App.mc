@@ -3,7 +3,6 @@ import Toybox.WatchUi;
 import Toybox.Timer;
 import Toybox.System;
 
-// Close the app after this many milliseconds of inactivity
 const INACTIVITY_TIMEOUT_MS = 15000;
 
 class App extends Application.AppBase {
@@ -24,16 +23,9 @@ class App extends Application.AppBase {
     }
 
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        var menu = new WatchUi.Menu2({:title => "Control Home"});
-
-        menu.addItem(new WatchUi.MenuItem("Sleep",       null, :sleep,      {}));
-        menu.addItem(new WatchUi.MenuItem("Living Room", null, :livingRoom, {}));
-        menu.addItem(new WatchUi.MenuItem("Lamp 1",      null, :lamp1,      {}));
-        menu.addItem(new WatchUi.MenuItem("Lamp 2",      null, :lamp2,      {}));
-        menu.addItem(new WatchUi.MenuItem("Wall",        null, :wall,       {}));
-        menu.addItem(new WatchUi.MenuItem("Wallflower",  null, :wallflower, {}));
-        menu.addItem(new WatchUi.MenuItem("Home Off",    null, :homeOff,    {}));
-
+        var menu = new WatchUi.Menu2({:title => "Sleep Control"});
+        menu.addItem(new WatchUi.MenuItem("Sleep Start", null, :sleepStart, {}));
+        menu.addItem(new WatchUi.MenuItem("Sleep Stop",  null, :sleepStop,  {}));
         resetTimer();
         return [menu, new MenuDelegate()];
     }
