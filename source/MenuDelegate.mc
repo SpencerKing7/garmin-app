@@ -11,6 +11,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onSelect(item as WatchUi.MenuItem) as Void {
+        getApp().resetTimer();
         var url = Config.ENDPOINT_URLS[item.getId() as Symbol];
         if (url == null) { return; }
         _pendingItem = item;
@@ -31,6 +32,7 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
     }
 
     function onBack() as Void {
+        getApp().resetTimer();
         WatchUi.popView(WatchUi.SLIDE_DOWN);
     }
 
