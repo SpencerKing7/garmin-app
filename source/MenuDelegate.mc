@@ -4,7 +4,7 @@ import Toybox.Lang;
 
 class MenuDelegate extends WatchUi.Menu2InputDelegate {
 
-    private var _pendingItem as WatchUi.MenuItem or Null = null;
+    private var _pendingItem as WatchUi.MenuItem? = null;
 
     function initialize() {
         Menu2InputDelegate.initialize();
@@ -12,9 +12,9 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
 
     function onSelect(item as WatchUi.MenuItem) as Void {
         getApp().resetTimer();
+        _pendingItem = item;
         var url = Config.ENDPOINT_URLS[item.getId() as Symbol];
         if (url == null) { return; }
-        _pendingItem = item;
         Communications.makeWebRequest(
             url, null,
             {:method => Communications.HTTP_REQUEST_METHOD_GET,
@@ -25,9 +25,9 @@ class MenuDelegate extends WatchUi.Menu2InputDelegate {
 
     function onResponse(responseCode as Number, data as Dictionary or String or Null) as Void {
         if (_pendingItem != null) {
-            _pendingItem.setSubLabel(responseCode == 200 ? "✓" : "✗");
-            _pendingItem = null;
+            (_pendingItem as WatchUi.MenuItem).setSubLabel(responseCode == 200 ? "Success" : "Failed");
             WatchUi.requestUpdate();
+            _pendingItem = null;
         }
     }
 
