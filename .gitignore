@@ -11,3 +11,8 @@ CLAUDE.md
 developer_key
 config.mc
 .DS_Store
+
+# Environment
+.env
+.env.*
+!.env.example
