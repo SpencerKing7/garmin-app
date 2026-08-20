@@ -10,3 +10,4 @@ external-mir/
 CLAUDE.md
 developer_key
 config.mc
+.DS_Store
