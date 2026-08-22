@@ -1,0 +1,7 @@
+{
+  "name": "ControlHome",
+  "defaultBranch": "master",
+  "device": "fr970",
+  "sdk": "$HOME/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-9.1.0-2026-03-09-6a872a80b",
+  "verify": "SDK=\"$HOME/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-9.1.0-2026-03-09-6a872a80b\" && \"$SDK/bin/monkeyc\" -d fr970 -m manifest.xml -j monkey.jungle -o ControlHome.prg -k developer_key"
+}
