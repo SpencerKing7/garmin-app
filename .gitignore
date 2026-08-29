@@ -9,7 +9,6 @@ external-mir/
 # Track .claude/ — the project's commands, agents, and project.json belong in the repo.
 # Only the machine-local permission delta stays out.
 .claude/settings.local.json
-CLAUDE.md
 developer_key
 config.mc
 .DS_Store
